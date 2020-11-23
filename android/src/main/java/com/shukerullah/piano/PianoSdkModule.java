@@ -319,7 +319,7 @@ public class PianoSdkModule extends ReactContextBaseJavaModule implements Activi
             return;
         }
 
-        if(requestCode == activity.RESULT_OK) {
+        if(resultCode == activity.RESULT_OK) {
             PianoIdToken token = PianoId.getPianoIdTokenResult(data);
             onAccessToken(token.accessToken);
             if(callback != null) {
@@ -329,7 +329,7 @@ public class PianoSdkModule extends ReactContextBaseJavaModule implements Activi
         }
 
         WritableMap event = Arguments.createMap();
-        String message = requestCode == activity.RESULT_CANCELED ? "User canceled OAuth" : "Something went";
+        String message = resultCode == activity.RESULT_CANCELED ? "User canceled OAuth" : "Something went";
         event.putString("message", message);
         event.putInt("resultCode", resultCode);
         if(callback != null) {
